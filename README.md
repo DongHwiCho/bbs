@@ -1,3 +1,3 @@
 # React Class : Making BBS
 
-<img src="/images/header.jpg">
+<img src="/public/images/header.jpg">
