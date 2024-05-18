@@ -10,6 +10,7 @@ const Books = () => {
     const db = getDatabase(app);
     const navi = useNavigate();
     const uid = sessionStorage.getItem('uid')
+    const [end, setEnd] = useState(false);
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
     const [query, setQuery] = useState('리액트');
@@ -25,6 +26,7 @@ const Books = () => {
         console.log(res.data);
         setBooks(res.data.documents)
         setLoading(false);
+        setEnd(res.data.meta.is_end);
     }
 
     useEffect(()=>{
@@ -89,7 +91,7 @@ const Books = () => {
             <div className='text-center my-3'>
                 <Button onClick={() => setPage(page-1)} disabled={page===1}>이전</Button>
                 <span className='mx-2'>{page}</span>
-                <Button onClick={() => setPage(page+1)}>다음</Button>
+                <Button onClick={() => setPage(page+1)} disabled={end}>다음</Button>
             </div>
         </div>
     )
