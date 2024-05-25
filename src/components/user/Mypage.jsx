@@ -3,6 +3,7 @@ import { Row, Col, Card, Button, InputGroup, Form } from 'react-bootstrap'
 import { app } from '../../firebaseInit'
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore'
 import ModalAddress from './ModalAddress'
+import ModalPhoto from './ModalPhoto'
 
 const Mypage = () => {
     const [loading, setLoading] = useState(false);
@@ -57,6 +58,9 @@ const Mypage = () => {
                         <h3 className='text-center'>마이페이지</h3>
                     </Card.Header>
                     <Card.Body>
+                        <div>
+                            <ModalPhoto setLoading={setLoading} form={form} setForm={setForm}/>
+                        </div>
                         <form onSubmit={onSubmit}>
                             <InputGroup className='mb-2'>
                                 <InputGroup.Text>이름</InputGroup.Text>
