@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import { Row, Col, Card, Button, InputGroup, Form } from 'react-bootstrap'
+import { app } from '../../firebaseInit'
+import { getFirestore, doc, setDoc } from 'firebase/firestore'
 
 const Mypage = () => {
+    const [loading, setLoading] = useState(false);
+    const db = getFirestore(app);
+    const uid = sessionStorage.getItem('uid');
     const [form, setForm] = useState({
+        email:sessionStorage.getItem('email'),
         name:'홍길동',
         phone:'010-0000-0000',
         address1:'인천 미추홀구 용현동',
@@ -14,7 +20,7 @@ const Mypage = () => {
         setForm({...form, [e.target.name]:e.target.value});
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault();
         if(name==='') {
             alert('이름을 입력하세요!');
@@ -23,8 +29,12 @@ const Mypage = () => {
         // 정보 저장
         if(!window.confirm('변경된 내용을 저장하시겠습니까?')) return; // 변경된 내용을 저장하지 않겠다.
         console.log(form);
+        setLoading(true);
+        await setDoc(doc(db, `users/${uid}`), form);
+        setLoading(false);
     }
 
+    if(loading) return <h1 className='text-center my-5'>로딩중입니다......</h1>
     return (
         <Row className='justify-content-center my-5'>
             <Col xs={12} md={10} lg={8}>
