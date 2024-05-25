@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Row, Col, Card, Button, InputGroup, Form } from 'react-bootstrap'
 import { app } from '../../firebaseInit'
-import { getFirestore, doc, setDoc } from 'firebase/firestore'
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore'
+import ModalAddress from './ModalAddress'
 
 const Mypage = () => {
     const [loading, setLoading] = useState(false);
@@ -34,6 +35,19 @@ const Mypage = () => {
         setLoading(false);
     }
 
+    const callAPI = async() => {
+        setLoading(true);
+        const res = await getDoc(doc(db, `users/${uid}`));
+        if(res.data()) {
+            setForm(res.data());
+        }
+        setLoading(false);
+    }
+
+    useEffect(()=>{
+        callAPI();
+    }, []);
+
     if(loading) return <h1 className='text-center my-5'>로딩중입니다......</h1>
     return (
         <Row className='justify-content-center my-5'>
@@ -55,7 +69,8 @@ const Mypage = () => {
                             <InputGroup className='mb-1'>
                                 <InputGroup.Text>주소</InputGroup.Text>
                                 <Form.Control name='address1' value={address1} onChange={onChangeForm}/>
-                                <Button>검색</Button>
+                                {/* <Button>검색</Button> */}
+                                <ModalAddress form={form} setForm={setForm}/>
                             </InputGroup>
                             <Form.Control name='address2' value={address2} onChange={onChangeForm} placeholder='상세주소'/>
                             <div className='text-center mt-3'>
