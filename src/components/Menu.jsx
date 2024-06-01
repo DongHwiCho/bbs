@@ -12,6 +12,7 @@ import Join from './user/Join';
 import Mypage from './user/Mypage';
 import ListPage from './bbs/ListPage';
 import InsertPage from './bbs/InsertPage';
+import ReadPage from './bbs/ReadPage';
 
 const Menu = () => {
     const navi = useNavigate();
@@ -70,6 +71,7 @@ const Menu = () => {
                 <Route path='/mypage' element={<Mypage/>}/>
                 <Route path='/bbs' element={<ListPage/>}/>
                 <Route path='/bbs/insert' element={<InsertPage/>}/>
+                <Route path='/bbs/read/:id' element={<ReadPage/>}/>
             </Routes>
         </>
     );

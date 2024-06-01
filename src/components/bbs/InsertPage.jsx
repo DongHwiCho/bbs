@@ -3,6 +3,7 @@ import { Row, Col, Form, Button } from 'react-bootstrap'
 import { app } from '../../firebaseInit'
 import { getFirestore, addDoc, collection } from 'firebase/firestore'
 import moment from 'moment'
+import '../Paging.css'
 
 const InsertPage = () => {
     const db = getFirestore(app);
