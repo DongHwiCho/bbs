@@ -69,17 +69,17 @@ const Login = () => {
                                 </InputGroup.Text>
                                 <Form.Control name='pass' type='password' value={pass} onChange={onChange}/>
                             </InputGroup>
-                            <div>
+                            <div className='text-center'>
                                 <Row>
                                     <Col>
-                                        <Button className='w-100' type='submit'>로그인</Button>
-                                        {/* <Button className='w-100' onClick={navi('/join')}>회원가입</Button> */}
+                                        <Button className='w-45 px-2 me-1' type='submit'>로그인</Button>
+                                        <Button className='w-45 px-2' href="/join">회원가입</Button>
                                     </Col>
                                 </Row>
                             </div>
-                            <div className='text-end'>
+                            {/* <div className='text-end'>
                                 <a href="/join">회원가입</a>
-                            </div>
+                            </div> */}
                         </form>
                     </Card.Body>
                 </Card>
