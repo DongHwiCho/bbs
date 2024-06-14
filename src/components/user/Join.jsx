@@ -32,7 +32,7 @@ const Join = () => {
             .then(success=>{
                 alert("이메일 가입성공");
                 setLoading(false);
-                navi('/login')
+                navi('/login');
             })
             .catch(error=>{
                 alert("에러: " + error.message)

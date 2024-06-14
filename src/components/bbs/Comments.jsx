@@ -108,7 +108,7 @@ const Comments = () => {
                     <div key={com.id}>
                         <Row className='mt-2'>
                             <Col>
-                                <span>{com.email}</span>
+                                <span className='me-2'>{com.email}</span>
                                 <span>{com.date}</span>
                             </Col>
                             {email===com.email && !com.isEdit &&
