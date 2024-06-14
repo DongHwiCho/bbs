@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Row, Col, Form, Button } from 'react-bootstrap'
 import { app } from '../../firebaseInit'
 import { getFirestore, doc, getDoc, updateDoc } from 'firebase/firestore'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
  
 const UpdatePage = () => {
+    const navi = useNavigate();
     const [form, setForm] = useState({
         contents:'',
         title:'',
@@ -46,7 +47,7 @@ const UpdatePage = () => {
                     <Form.Control name='contents' value={contents} onChange={onChangeForm} as="textarea" rows={10} placeholder='내용을 입력하세요.'/>
                     <div className='mt-3 text-center'>
                         <Button className='px-5 me-2' onClick={onClickUpdate}>수정</Button>
-                        <Button variant='secondary' className='px-5'>취소</Button>
+                        <Button variant='secondary' className='px-5' onClick={() => {navi(`/bbs/read/${id}`)}}>취소</Button>
                     </div>
                 </div>
             </Col>

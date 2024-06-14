@@ -3,8 +3,10 @@ import { Row, Col, Form, Button } from 'react-bootstrap'
 import { app } from '../../firebaseInit'
 import { getFirestore, addDoc, collection } from 'firebase/firestore'
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
 
 const InsertPage = () => {
+    const navi = useNavigate();
     const db = getFirestore(app);
 
     const [form, setForm] = useState({
@@ -48,7 +50,7 @@ const InsertPage = () => {
                     <Form.Control name='contents' value={contents} onChange={onChangeForm} as="textarea" rows={10} placeholder='내용을 입력하세요.'/>
                     <div className='mt-3 text-center'>
                         <Button onClick={onInsert} className='px-5 me-2'>등록</Button>
-                        <Button variant='secondary' className='px-5'>취소</Button>
+                        <Button onClick={() => {navi('/bbs')}} variant='secondary' className='px-5'>취소</Button>
                     </div>
                 </div>
             </Col>
